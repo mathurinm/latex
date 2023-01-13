@@ -44,10 +44,43 @@ A basic `.tex` template comprises of the following macros:
 ## Bibliography
 ```
 \usepackage{natbib}
+\usepackage{xcolor}
+\definecolor{linkcolor}{RGB}{83,83,182} % YMMV
+\definecolor{citecolor}{RGB}{128,0,128} % YMMV
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=citecolor,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor
+}
+
+...
+\bibliographystyle{unsrtnat}
+\bibliography{REFERENCES_FILE.bib}
+\end{document}
 ```
 - harmonize journal names abbreviations
 - no need for url, dates (only year is enough), publishers in conference papers
 - difference between citing with and without parenthesis (citep/citet)
+
+Install Google Scholar extension on your browser.
+Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest.
+
+Typical reference structure : 
+```
+@CATEGORY{REF_SHORTCUT,       % Usually AUTHOR_YEAR_WORD
+  title     = {PAPER_TITLE},
+  author    = {AUTHOR(S)},    % Usually SURNAME, N.
+  journal   = {VENUE_NAME},   % Usually harmonized
+  year      = {YEAR}
+}
+```
+
+To cite a paper : `citet{REF_SHORTCUT}` if the citation is an integral component of corpus (i.e. the sentence wouldn't make sense without it) or `citep{REF_SHORTCUT}` if the citation is a complementary information (i.e. the sentence would still make sense without it).
+Eg : "The work presented in `citet{REF}` introduces such concept, which was later proven wrong `citep{REF}`."
+
+
 
 ## Citing equations, sections, etc
 ```
@@ -106,6 +139,11 @@ declare only the shortcuts you need, don't copy paste from one project to the ot
 ## some useful shortcuts in my lab (YMMV)
 ```
 \newcommand{\bbR}{\mathbb{R}}
-\\newcommand{\cO}{\mathcal{O}}
-\DeclairedPairDelimiters{norm}
+\newcommand{\cO}{\mathcal{O}}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclareMathOperator{\prox}{prox}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\tr}{tr}
 ```
