@@ -1,17 +1,29 @@
 # Using $\LaTeX$
 
-$\LaTeX$ is a high level language created by Donald Knuth that allows you to write and structure (scientific) documents through a collection of macros. $\LaTeX$ is widely adopted by the scientific community because of its elegant and standardized outputs.
+Disclaimer: those are general guidelines, they are not absolute.
+It's OK disagree with them.
 
 ## Work environment
-- VSCODE + vscode latex by James Yu
-- enable jumping to pdf and jumping to tex with ctrl + click
-- build from vscode and view pdf in dual pane
-- use Spellcheck to catch typos
+- Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
+- build from directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
+- enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in document
+- use a spell checked to catch typos, e.g. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (use your favorite editor, beautiful and fast pdf rendering, version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
+- check out shortcuts to copy, cut, delete a line (c, v, K), to switch a line with the one above, etc.
 
-TODO: Local option (VS Code, LaTeX extention) vs online option (Overleaf). How to compile.
 
-## II-) Basic document structure
-A basic `.tex` template comprises of the following macros:
+## Code presentation
+- Math code can be hard to parse when you want to find an error or change something. Make it easier by indenting code for readability:
+```
+\begin{align}
+    \lambda \norm{\Theta}_1 = \max_{\norm{U}_\infty \leq \lambda}
+\end{align}
+```
+- always use the same spacing to be able to use search and replace efficiently: use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
+- make versioning easier by writing a single sentence per line. It also makes commenting some parts of the code easier.
+
+## Basic document and project structure
+A basic `.tex` template comprises the following macros:
 
 ```
 \documentclass{article}
@@ -37,16 +49,18 @@ A basic `.tex` template comprises of the following macros:
 \end{document}
 ```
 
-
-
+## Images
+- Put your images in a separate folder and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
+- When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise the git history will quickly become too large.
 
 
 ## Bibliography
+The following snippet make bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
 ```
 \usepackage{natbib}
 \usepackage{xcolor}
-\definecolor{linkcolor}{RGB}{83,83,182} % YMMV
-\definecolor{citecolor}{RGB}{128,0,128} % YMMV
+\definecolor{linkcolor}{RGB}{83,83,182} % you can customize
+\definecolor{citecolor}{RGB}{128,0,128} % you can customize
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -60,14 +74,21 @@ A basic `.tex` template comprises of the following macros:
 \bibliography{REFERENCES_FILE.bib}
 \end{document}
 ```
-- harmonize journal names abbreviations
-- no need for url, dates (only year is enough), publishers in conference papers
-- difference between citing with and without parenthesis (citep/citet)
 
-Install Google Scholar extension on your browser.
-Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest.
+For the entries in the `.bib` file:
+- harmonize journal/conferences names abbreviations (avoid mixing "ICML" and "International Conference on Machine Learning")
+- no need for url, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
+- the "Google Scholar" browser extension allows you get the bibtex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the result popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
+- avoid huge bibliographic files, they are a pain to maintain
+- citations should be presented differently depending on whether or not they are an integral part of the corpus  (i.e. the sentence wouldn't make sense without it):
+"The work presented in `\citet{REF1}` introduces such concept, which was later proven wrong `\citep{REF2}`."
 
-Typical reference structure : 
+when a citation is part of a sentence, use `\citet{someref}`: "As shown by X et al. (2016), it is better to...". When the citation is NOT part of the sentence, use `\citep` (p for parenthesis): "It is better to Y (X et al., 2016)"
+
+
+<!-- Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest. -->
+
+<!-- Typical reference structure :
 ```
 @CATEGORY{REF_SHORTCUT,       % Usually AUTHOR_YEAR_WORD
   title     = {PAPER_TITLE},
@@ -75,10 +96,7 @@ Typical reference structure :
   journal   = {VENUE_NAME},   % Usually harmonized
   year      = {YEAR}
 }
-```
-
-To cite a paper : `citet{REF_SHORTCUT}` if the citation is an integral component of corpus (i.e. the sentence wouldn't make sense without it) or `citep{REF_SHORTCUT}` if the citation is a complementary information (i.e. the sentence would still make sense without it).
-Eg : "The work presented in `citet{REF}` introduces such concept, which was later proven wrong `citep{REF}`."
+``` -->
 
 
 
@@ -111,39 +129,41 @@ Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompl
 \SetEndCharOfAlgoLine{}
 ```
 
-Reset algo line counter in each new algorithm
+- Reset algo line counter in each new algorithm
 
 
-## Code presentation
-- indent code for readability:
-```
-\begin{align}
-    \lambda \norm{\Theta}_1 = \max_{\norm{U}_\infty \leq \lambda} \tr(\Theta U) =  \min_{\norm{U}_\infty \leq \lambda} -\tr(\Theta U)
-\end{align}
-```
+## Folder structure:
+- to minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section, combined with `\input{yourfilename}`.
+This keeps a light main document.
+<!-- one subfolder per conference  -->
 
-- always use the same spacing to be able to use search and replace efficiently: use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
+## On shortcuts and additional packages
 
+- Use custom shortcuts and additional packages parcimoniously: they make collaborating less easy. There's always a technical debt to having a 1000 lines shortcut file.
+
+  In addition, some packages conflict with each other, some packages can't be used when using a particular journal template: every package you rely on is a potential liability, so keep that in mind (there's a tradeoff, many packages are very useful)
+
+  Declare only the shortcuts you need, don't copy paste from one project to the other: the latter leads to uncontrolled growth and, often in my experience, wasted time in the end.
+
+- Some useful shortcuts in my lab (YMMV)
+  ```
+  \newcommand{\bbR}{\mathbb{R}}
+  \newcommand{\cO}{\mathcal{O}}
+  \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+  \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+  % etc
+  ```
+
+- Declare shortcuts inside your main document, or inside an additional file `shortcuts.sty` + use `\usepackage{shortcuts}` in your preamble
+
+
+## Frequent errors
+- When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a mathoperator: `\DeclareMathOperator{\argmin}{arg\,min}
+
+
+
+# Advanced features
 
 ## Restating theorems in appendix
+TODO
 
-
-## folder structure:
-tex folder, one subfolder per conference
-
-## on shortcuts and additional packages
-use them parcimoniously: they make collaborating less easy. There's a technical debt to having a 1000 lines shortcut file.
-Some package conflict with each other, some packages can't be used when using a particular journal template > travel lightly
-declare only the shortcuts you need, don't copy paste from one project to the other (incontrolled growth)
-
-## some useful shortcuts in my lab (YMMV)
-```
-\newcommand{\bbR}{\mathbb{R}}
-\newcommand{\cO}{\mathcal{O}}
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
-\DeclareMathOperator{\prox}{prox}
-\DeclareMathOperator{\interior}{int}
-\DeclareMathOperator{\dom}{dom}
-\DeclareMathOperator{\tr}{tr}
-```
