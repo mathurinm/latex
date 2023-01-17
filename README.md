@@ -5,11 +5,11 @@ It's OK if you disagree with them.
 
 ## Work environment
 - Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
-- Build from directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
-- Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in document
-- Use a spell checked to catch typos, e.g. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- Build directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
+- Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in the document
+- Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ [the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
 - Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (use your favorite editor, beautiful and fast pdf rendering, version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
-- Check out shortcuts to copy, cut, delete a line (c, v, K), to switch a line with the one above, etc.
+- Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, etc.
 
 
 ## Code presentation
@@ -34,10 +34,10 @@ It's OK if you disagree with them.
   \end{align}
   ```
 - Always use the same spacing to be able to use search and replace efficiently: for example, use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
-- Make versioning easier by writing a single sentence per line. It also makes commenting some parts of the code easier.
+- Make versioning easier by writing a single sentence per line. It also makes commenting out some parts of the code easier.
 
 ## Basic document and project structure
-A basic `.tex` template for main document comprises the following macros:
+A basic `.tex` template for the main document comprises the following macros:
 
 ```latex
 \documentclass{article}
@@ -70,7 +70,7 @@ A basic `.tex` template for main document comprises the following macros:
 
 ## Bibliography
 - I recommend using natbib
-- The following snippet make bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
+- The following snippet makes bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
 ```latex
 \usepackage{natbib}
 \usepackage{xcolor}
@@ -93,10 +93,10 @@ A basic `.tex` template for main document comprises the following macros:
 - For the entries in the `.bib` file:
   - harmonize journal/conferences names abbreviations (avoid mixing "ICML" and "International Conference on Machine Learning")
   - no need for url, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
-  - the "Google Scholar" browser extension allows you get the bibtex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the result popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
+  - the "Google Scholar" browser extension allows you to get the BibTex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the results popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
   - avoid huge bibliographic files, they are a pain to maintain
 - citations should be presented differently depending on whether or not they are an integral part of the corpus  (i.e. the sentence wouldn't make sense without it):
-"The work presented by `\citet{REF1}` introduces such concept, which was later proven wrong `\citep{REF2}`.": this produces "The work presented by X et al. (2016) introduces such concept, which was later proven wrong (Y et al, 2019).".
+"The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`.": this produces "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019).".
 The reason is that everything which is between parenthesis should be removable without affecting the grammatical correctness of the sentence. If you write "as shown by (Z et al, 2020)", this is not respected.
 
 
@@ -123,7 +123,7 @@ The reason is that everything which is between parenthesis should be removable w
   ```
   Note that `cleveref` is capricious, and for example must always be loaded after hyperref.
 
-- Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompletion: for example, use `\label{eq:pgd}`.
+- Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for auto-completion: for example, use `\label{eq:pgd}`.
 - Define new environments with:
   ```latex
   \newtheorem{theorem}{Theorem}
@@ -135,7 +135,7 @@ The reason is that everything which is between parenthesis should be removable w
 
 ## Mathematical operators
 
-Mathematical operators such as `sin` should not be italicized, otherwise it reads a "s times i times n".
+Mathematical operators such as `sin` should not be italicized, otherwise it reads "s times i times n".
 To achieve this, instead of using `\mathrm` repeatedly, use:
 
 ```latex
@@ -144,7 +144,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 ```
 
 ## Algorithms
-- Number lines to ease communication with reviewer and readers,
+- Number lines to ease communication with reviewers and readers,
 - Use `\tcp{}` to add inline comments, customize location with `\tcp*[l]` for example. For more info, see [page 32 of the manual](http://tug.ctan.org/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf).
 ```latex
 \usepackage{algorithm}
@@ -169,7 +169,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 
 - Use custom shortcuts and additional packages parcimoniously: they make collaborating less easy. There's always a technical debt to having a 1000 lines shortcut file.
 
-  Declare only the shortcuts you need, don't copy paste from one project to the other: the latter leads to uncontrolled growth and, often in my experience, wasted time in the end.
+  Declare only the shortcuts you need, don't copy-paste from one project to the other: the latter leads to uncontrolled growth and, often in my experience, wasted time in the end.
 
   In addition, some packages conflict with each other, some packages can't be used when using a particular journal template: every package you rely on is a potential liability, so keep that in mind (there's a tradeoff, many packages are very useful)
 
