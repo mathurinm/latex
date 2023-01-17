@@ -126,6 +126,7 @@ when a citation is part of a sentence, use `\citet{someref}`: "As shown by X et 
 - Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompletion: for example, use `\label{eq:pgd}`.
 - define new environments with:
   ```latex
+  \newtheorem{theorem}{Theorem}
   \newtheorem{NEWENVANME}[theorem]{NEWENVNAME_DISPLAYED}
   ```
 
@@ -188,10 +189,7 @@ This keeps a light main document.
 
 
 
-# Advanced features
-
-## Restating theorems in appendix
-TODO
+# Advanced features and snippets
 
 
 ## Defining a `Problem` equation-like environement
@@ -208,3 +206,12 @@ Use the following snippet:
 \Crefname{problem}{Problem}{Problems}
 ```
 
+## Creating a nicely typeset += operator
+
+```latex
+\newcommand{\pluseq}{\mathrel{{+}{=}}}
+```
+
+
+## Restating theorems in appendix
+TODO
