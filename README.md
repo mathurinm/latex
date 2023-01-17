@@ -145,7 +145,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 
 ## Algorithms
 - Number lines to ease communication with reviewer and readers,
-- Use `\tcp{}` to add inline comments
+- Use `\tcp{}` to add inline comments, customize location with `\tcp*[l]` for example. For more info, see [page 32 of the manual](http://tug.ctan.org/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf).
 ```latex
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -156,14 +156,13 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 ```
 
 - Reset algo line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
-- Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t\ for top)
+- Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t` for top)
 
 ## Folder structure:
 - To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section (usually placed together in a `section` folder), combined with `\input{yourfilename}` in your `main.tex`.
-
   This keeps a light main document.
 
-  If you do so, write `%!TEX root = ../main.tex` at the top of your section files so that you can build with VS code directly from this file.
+  If you do so, write `%!TEX root = ../main.tex` at the top of each of your section files so that you can build with VS code directly from this file.
 <!-- one subfolder per conference  -->
 
 ## On shortcuts and additional packages
