@@ -14,12 +14,26 @@ It's OK disagree with them.
 
 ## Code presentation
 - Math code can be hard to parse when you want to find an error or change something. Make it easier by indenting code for readability:
-```
-\begin{align}
-    \lambda \norm{\Theta}_1 = \max_{\norm{U}_\infty \leq \lambda}
-\end{align}
-```
-- always use the same spacing to be able to use search and replace efficiently: use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
+  ```latex
+  \begin{align}
+      \lambda \norm{\Theta}_1 = \max_{\norm{U}_\infty \leq \lambda}
+  \end{align}
+  ```
+  In big align blocks, using multiple indentation levels may help:
+  ```latex
+  \begin{align}
+     G^*_{\MCP}(\Theta^*)
+        &= \sup_{\Theta} \left\{ \langle \Theta^*, \Theta \rangle
+            - G_{\MCP}(\Theta) \right\}  \\
+        & = \sup_{\Theta} \left\{ \langle \Theta^*, \Theta \rangle + \logdet(\Theta)
+            - \tr(S\Theta)     - \MCP(\lambda, \gamma, \Theta) \right\} \\
+        & = \sup_{\Theta} \left\{ \tr(\Theta^*, \Theta)  + \logdet(\Theta)
+             - \tr(S\Theta) - \MCP(\lambda, \gamma, \Theta) \right\}           \\
+        & = \sup_{\Theta} \left\{\logdet(\Theta) - \tr(\Theta, \Theta^* - S)
+            - \MCP(\lambda, \gamma, \Theta) \right\}
+  \end{align}
+  ```
+- always use the same spacing to be able to use search and replace efficiently: for example, use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
 - make versioning easier by writing a single sentence per line. It also makes commenting some parts of the code easier.
 
 ## Basic document and project structure
@@ -129,11 +143,11 @@ Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompl
 \SetEndCharOfAlgoLine{}
 ```
 
-- Reset algo line counter in each new algorithm
+- Reset algo line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
 
 
 ## Folder structure:
-- to minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section, combined with `\input{yourfilename}`.
+- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section, combined with `\input{yourfilename}`.
 This keeps a light main document.
 <!-- one subfolder per conference  -->
 
