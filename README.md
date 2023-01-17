@@ -1,15 +1,15 @@
 # Using $\LaTeX$
 
 Disclaimer: those are general guidelines, they are not absolute.
-It's OK disagree with them.
+It's OK if you disagree with them.
 
 ## Work environment
 - Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
-- build from directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
-- enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in document
-- use a spell checked to catch typos, e.g. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-- personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (use your favorite editor, beautiful and fast pdf rendering, version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
-- check out shortcuts to copy, cut, delete a line (c, v, K), to switch a line with the one above, etc.
+- Build from directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
+- Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in document
+- Use a spell checked to catch typos, e.g. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (use your favorite editor, beautiful and fast pdf rendering, version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
+- Check out shortcuts to copy, cut, delete a line (c, v, K), to switch a line with the one above, etc.
 
 
 ## Code presentation
@@ -33,11 +33,11 @@ It's OK disagree with them.
             - \MCP(\lambda, \gamma, \Theta) \right\}
   \end{align}
   ```
-- always use the same spacing to be able to use search and replace efficiently: for example, use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
-- make versioning easier by writing a single sentence per line. It also makes commenting some parts of the code easier.
+- Always use the same spacing to be able to use search and replace efficiently: for example, use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
+- Make versioning easier by writing a single sentence per line. It also makes commenting some parts of the code easier.
 
 ## Basic document and project structure
-A basic `.tex` template comprises the following macros:
+A basic `.tex` template for main document comprises the following macros:
 
 ```latex
 \documentclass{article}
@@ -69,7 +69,8 @@ A basic `.tex` template comprises the following macros:
 
 
 ## Bibliography
-The following snippet make bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
+- I recommend using natbib
+- The following snippet make bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
 ```latex
 \usepackage{natbib}
 \usepackage{xcolor}
@@ -89,15 +90,14 @@ The following snippet make bibliography link clickable (through `hyperref`), and
 \end{document}
 ```
 
-For the entries in the `.bib` file:
-- harmonize journal/conferences names abbreviations (avoid mixing "ICML" and "International Conference on Machine Learning")
-- no need for url, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
-- the "Google Scholar" browser extension allows you get the bibtex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the result popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
-- avoid huge bibliographic files, they are a pain to maintain
+- For the entries in the `.bib` file:
+  - harmonize journal/conferences names abbreviations (avoid mixing "ICML" and "International Conference on Machine Learning")
+  - no need for url, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
+  - the "Google Scholar" browser extension allows you get the bibtex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the result popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
+  - avoid huge bibliographic files, they are a pain to maintain
 - citations should be presented differently depending on whether or not they are an integral part of the corpus  (i.e. the sentence wouldn't make sense without it):
-"The work presented in `\citet{REF1}` introduces such concept, which was later proven wrong `\citep{REF2}`."
-
-when a citation is part of a sentence, use `\citet{someref}`: "As shown by X et al. (2016), it is better to...". When the citation is NOT part of the sentence, use `\citep` (p for parenthesis): "It is better to Y (X et al., 2016)"
+"The work presented by `\citet{REF1}` introduces such concept, which was later proven wrong `\citep{REF2}`.": this produces "The work presented by X et al. (2016) introduces such concept, which was later proven wrong (Y et al, 2019).".
+The reason is that everything which is between parenthesis should be removable without affecting the grammatical correctness of the sentence. If you write "as shown by (Z et al, 2020)", this is not respected.
 
 
 <!-- Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest. -->
@@ -116,7 +116,7 @@ when a citation is part of a sentence, use `\citet{someref}`: "As shown by X et 
 
 ## Citing equations, sections, algorithms
 
-- Use the packages hyperref and cleveref together in order to easily cite and link equations, sections and other environments.
+- Use the packages `hyperref` and `cleveref` together in order to easily cite and link equations, sections and other environments.
   ```latex
   \usepackage{hyperref}
   \usepackage[nameinlink]{cleveref}
@@ -124,7 +124,7 @@ when a citation is part of a sentence, use `\citet{someref}`: "As shown by X et 
   Note that `cleveref` is capricious, and for example must always be loaded after hyperref.
 
 - Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompletion: for example, use `\label{eq:pgd}`.
-- define new environments with:
+- Define new environments with:
   ```latex
   \newtheorem{theorem}{Theorem}
   \newtheorem{NEWENVANME}[theorem]{NEWENVNAME_DISPLAYED}
@@ -144,8 +144,8 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 ```
 
 ## Algorithms
-- number lines to ease communication with reviewer and readers,
-- use `\tcp{}` to add inline comments
+- Number lines to ease communication with reviewer and readers,
+- Use `\tcp{}` to add inline comments
 ```latex
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -159,8 +159,11 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 - Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t\ for top)
 
 ## Folder structure:
-- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section, combined with `\input{yourfilename}` in your `main.tex`.
-This keeps a light main document.
+- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section (usually placed together in a `section` folder), combined with `\input{yourfilename}` in your `main.tex`.
+
+  This keeps a light main document.
+
+  If you do so, write `%!TEX root = ../main.tex` at the top of your section files so that you can build with VS code directly from this file.
 <!-- one subfolder per conference  -->
 
 ## On shortcuts and additional packages
