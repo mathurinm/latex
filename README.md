@@ -39,7 +39,7 @@ It's OK disagree with them.
 ## Basic document and project structure
 A basic `.tex` template comprises the following macros:
 
-```
+```latex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
@@ -70,7 +70,7 @@ A basic `.tex` template comprises the following macros:
 
 ## Bibliography
 The following snippet make bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
-```
+```latex
 \usepackage{natbib}
 \usepackage{xcolor}
 \definecolor{linkcolor}{RGB}{83,83,182} % you can customize
@@ -114,19 +114,30 @@ when a citation is part of a sentence, use `\citet{someref}`: "As shown by X et 
 
 
 
-## Citing equations, sections, etc
-```
-\usepackage{hyperref}
-\usepackage[nameinlink]{cleveref}
-```
-cleveref must always be loaded after hyperref.
+## Citing equations, sections, algorithms
 
-Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompletion: for example, use `\label{eq:pgd}`.
+- Use the packages hyperref and cleveref together in order to easily cite and link equations, sections and other environments.
+  ```latex
+  \usepackage{hyperref}
+  \usepackage[nameinlink]{cleveref}
+  ```
+  Note that `cleveref` is capricious, and for example must always be loaded after hyperref.
 
+- Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompletion: for example, use `\label{eq:pgd}`.
+- define new environments with:
+  ```latex
+  \newtheorem{NEWENVANME}[theorem]{NEWENVNAME_DISPLAYED}
+  ```
+
+  The `[theorem]` option allows to share counter with the existing `Theorem` environment.
+  Doing so results in the following numbering: Definition 1, Theorem 2, Proposition 3, which makes it easier to find some result in the document (in contrast to: Theorem 1, Proposition 1, Proposition 2, Definition 1, Proposition 3)
 
 ## Mathematical operators
 
-```
+Mathematical operators such as `sin` should not be italicized, otherwise it reads a "s times i times n".
+To achieve this, instead of using `\mathrm` repeatedly, use:
+
+```latex
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator{\logdet}{log\,det}
 ```
@@ -134,7 +145,7 @@ Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompl
 ## Algorithms
 - number lines to ease communication with reviewer and readers,
 - use `\tcp{}` to add inline comments
-```
+```latex
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage[titlenumbered,linesnumbered,ruled,noend,algo2e]{algorithm2e}
@@ -144,10 +155,10 @@ Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for autocompl
 ```
 
 - Reset algo line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
-
+- Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t\ for top)
 
 ## Folder structure:
-- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section, combined with `\input{yourfilename}`.
+- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section, combined with `\input{yourfilename}` in your `main.tex`.
 This keeps a light main document.
 <!-- one subfolder per conference  -->
 
@@ -155,12 +166,13 @@ This keeps a light main document.
 
 - Use custom shortcuts and additional packages parcimoniously: they make collaborating less easy. There's always a technical debt to having a 1000 lines shortcut file.
 
-  In addition, some packages conflict with each other, some packages can't be used when using a particular journal template: every package you rely on is a potential liability, so keep that in mind (there's a tradeoff, many packages are very useful)
-
   Declare only the shortcuts you need, don't copy paste from one project to the other: the latter leads to uncontrolled growth and, often in my experience, wasted time in the end.
 
+  In addition, some packages conflict with each other, some packages can't be used when using a particular journal template: every package you rely on is a potential liability, so keep that in mind (there's a tradeoff, many packages are very useful)
+
+
 - Some useful shortcuts in my lab (YMMV)
-  ```
+  ```latex
   \newcommand{\bbR}{\mathbb{R}}
   \newcommand{\cO}{\mathcal{O}}
   \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
@@ -172,7 +184,7 @@ This keeps a light main document.
 
 
 ## Frequent errors
-- When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a mathoperator: `\DeclareMathOperator{\argmin}{arg\,min}
+- When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a mathoperator: `\DeclareMathOperator{\argmin}{arg\,min}`
 
 
 
@@ -180,4 +192,19 @@ This keeps a light main document.
 
 ## Restating theorems in appendix
 TODO
+
+
+## Defining a `Problem` equation-like environement
+Use the following snippet:
+```latex
+\usepackage{aliascnt}
+\newaliascnt{problem}{equation}
+\aliascntresetthe{problem}
+\creflabelformat{problem}{#2\textup{(#1)}#3}
+\makeatletter
+\def\problem{$$\refstepcounter{problem}}
+\def\endproblem{\eqno \hbox{\@eqnnum}$$\@ignoretrue}
+\makeatother
+\Crefname{problem}{Problem}{Problems}
+```
 
