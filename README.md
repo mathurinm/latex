@@ -3,7 +3,7 @@
 Disclaimer: those are general guidelines, they are not absolute.
 It's OK if you disagree with them.
 
-# Jump quickly to
+# Contents
 
 1. [Work environment](#work-environment)
 1. [Code presentation](#code-presentation)
