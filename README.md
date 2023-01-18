@@ -3,6 +3,22 @@
 Disclaimer: those are general guidelines, they are not absolute.
 It's OK if you disagree with them.
 
+# Jump quickly to
+
+1. [Work environment](#work-environment)
+2. [Code presentation](#code-presentation)
+3. [Basic document and project structure](#basic-document-and-project-structure)
+4. [Images](#images)
+5. [Bibliography](#bibliography)
+6. [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
+7. [Mathematical operators](#mathematical-operators)
+8. [Algorithms](#algorithms)
+9. [Folder structure](#folder-structure)
+10. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
+11. [Frequent errors](#frequent-errors)
+
+
+
 ## Work environment
 - Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
 - Build directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
@@ -158,7 +174,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 - Reset algo line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
 - Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t` for top)
 
-## Folder structure:
+## Folder structure
 - To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section (usually placed together in a `section` folder), combined with `\input{yourfilename}` in your `main.tex`.
   This keeps a light main document.
 
