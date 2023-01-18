@@ -6,25 +6,25 @@ It's OK if you disagree with them.
 # Jump quickly to
 
 1. [Work environment](#work-environment)
-2. [Code presentation](#code-presentation)
-3. [Basic document and project structure](#basic-document-and-project-structure)
-4. [Images](#images)
-5. [Bibliography](#bibliography)
-6. [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
-7. [Mathematical operators](#mathematical-operators)
-8. [Algorithms](#algorithms)
-9. [Folder structure](#folder-structure)
-10. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
-11. [Frequent errors](#frequent-errors)
+1. [Code presentation](#code-presentation)
+1. [Basic document and project structure](#basic-document-and-project-structure)
+1. [Images](#images)
+1. [Bibliography](#bibliography)
+1. [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
+1. [Mathematical operators](#mathematical-operators)
+1. [Algorithms](#algorithms)
+1. [Folder structure](#folder-structure)
+1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
+1. [Frequent errors](#frequent-errors)
 
 
 
 ## Work environment
 - Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
-- Build directly from vscode  and keep the pdf open in dual pane. Build frequently to catch errors easily.
+- Build directly from vscode and keep the pdf open in dual pane. Build frequently to catch errors easily.
 - Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in the document
 - Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ [the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
-- Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (use your favorite editor, beautiful and fast pdf rendering, version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
+- Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (using your favorite editor, beautiful and fast pdf rendering, and version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
 - Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, etc.
 
 
@@ -81,12 +81,12 @@ A basic `.tex` template for the main document comprises the following macros:
 
 ## Images
 - Put your images in a separate folder and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
-- When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise the git history will quickly become too large.
+- When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise, the git history will quickly become too large.
 
 
 ## Bibliography
 - I recommend using natbib
-- The following snippet makes bibliography link clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
+- The following snippet makes bibliography links clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
 ```latex
 \usepackage{natbib}
 \usepackage{xcolor}
@@ -108,7 +108,7 @@ A basic `.tex` template for the main document comprises the following macros:
 
 - For the entries in the `.bib` file:
   - harmonize journal/conferences names abbreviations (avoid mixing "ICML" and "International Conference on Machine Learning")
-  - no need for url, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
+  - no need for URL, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
   - the "Google Scholar" browser extension allows you to get the BibTex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the results popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
   - avoid huge bibliographic files, they are a pain to maintain
 - citations should be presented differently depending on whether or not they are an integral part of the corpus  (i.e. the sentence wouldn't make sense without it):
@@ -146,8 +146,8 @@ The reason is that everything which is between parenthesis should be removable w
   \newtheorem{NEWENVANME}[theorem]{NEWENVNAME_DISPLAYED}
   ```
 
-  The `[theorem]` option allows to share counter with the existing `Theorem` environment.
-  Doing so results in the following numbering: Definition 1, Theorem 2, Proposition 3, which makes it easier to find some result in the document (in contrast to: Theorem 1, Proposition 1, Proposition 2, Definition 1, Proposition 3)
+  The `[theorem]` option allows sharing counter with the existing `Theorem` environment.
+  Doing so results in the following numbering: Definition 1, Theorem 2, Proposition 3, which makes it easier to find some results in the document (in contrast to: Theorem 1, Proposition 1, Proposition 2, Definition 1, Proposition 3)
 
 ## Mathematical operators
 
@@ -183,11 +183,11 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 
 ## On shortcuts and additional packages
 
-- Use custom shortcuts and additional packages parcimoniously: they make collaborating less easy. There's always a technical debt to having a 1000 lines shortcut file.
+- Use custom shortcuts and additional packages parsimoniously: they make collaborating less easy. There's always a technical debt to having a 1000 lines shortcut file.
 
-  Declare only the shortcuts you need, don't copy-paste from one project to the other: the latter leads to uncontrolled growth and, often in my experience, wasted time in the end.
+  Declare only the shortcuts you need, do not copy-paste from one project to the other: the latter leads to uncontrolled growth and, often in my experience, wasted time in the end.
 
-  In addition, some packages conflict with each other, some packages can't be used when using a particular journal template: every package you rely on is a potential liability, so keep that in mind (there's a tradeoff, many packages are very useful)
+  In addition, some packages conflict with each other, and some packages can't be used when using a particular journal template: every package you rely on is a potential liability, so keep that in mind (there's a tradeoff, many packages are very useful)
 
 
 - Some useful shortcuts in my lab (YMMV)
@@ -203,14 +203,14 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 
 
 ## Frequent errors
-- When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a mathoperator: `\DeclareMathOperator{\argmin}{arg\,min}`
+- When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a math operator: `\DeclareMathOperator{\argmin}{arg\,min}`
 
 
 
 # Advanced features and snippets
 
 
-## Defining a `Problem` equation-like environement
+## Defining a `Problem` equation-like environment
 Use the following snippet:
 ```latex
 \usepackage{aliascnt}
