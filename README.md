@@ -179,6 +179,27 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
   This keeps a light main document.
 
   If you do so, write `%!TEX root = ../main.tex` at the top of each of your section files so that you can build with VS code directly from this file.
+- Folder structure in a nutshell
+```
+  |———— your_document_folder/
+  |
+  |   |———— sections/             <-- where to put
+  |     |———— section1.tex            document sections
+  |     |———— section2.tex
+  |     |
+  |
+  |
+  |   |———— images/               <-- where to put
+  |     |———— image1.png              figures/images
+  |     |———— figure.pdf
+  |     |
+  |
+  |   |———— main.tex              <-- document entry
+  |
+  |   |———— bibliography.bib      <-- where to put
+  |                                   references
+  |
+```
 <!-- one subfolder per conference  -->
 
 ## On shortcuts and additional packages
