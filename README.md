@@ -171,7 +171,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 \SetEndCharOfAlgoLine{}
 ```
 
-- Reset algo line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
+- Reset the line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
 - Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t` for top)
 
 ## Folder structure
@@ -181,24 +181,15 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
   If you do so, write `%!TEX root = ../main.tex` at the top of each of your section files so that you can build with VS code directly from this file.
 - Folder structure in a nutshell
 ```
-  |———— your_document_folder/
-  |
-  |   |———— sections/             <-- where to put
-  |     |———— section1.tex            document sections
-  |     |———— section2.tex
-  |     |
-  |
-  |
-  |   |———— images/               <-- where to put
-  |     |———— image1.png              figures/images
-  |     |———— figure.pdf
-  |     |
-  |
-  |   |———— main.tex              <-- document entry
-  |
-  |   |———— bibliography.bib      <-- where to put
-  |                                   references
-  |
+  your_document_folder/
+  ├── sections/           <-- split document into sections
+  |   └── section1.tex
+  |   └── section2.tex
+  |—— images/              <-- where to put figures/images
+  |   └── image1.png
+  |   └── figure.pdf
+  |——— main.tex            <-- document entry
+  |——— bibliography.bib    <-- where to put references
 ```
 <!-- one subfolder per conference  -->
 
