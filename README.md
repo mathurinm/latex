@@ -140,14 +140,19 @@ The reason is that everything which is between parenthesis should be removable w
   Note that `cleveref` is capricious, and for example must always be loaded after hyperref.
 
 - Prefixing the labels with `eq:` or `pb:` or `sec:` or `sub:` helps for auto-completion: for example, use `\label{eq:pgd}`.
-- Define new environments with:
+- Define new environments (such as definition) in the preamble with:
   ```latex
   \newtheorem{theorem}{Theorem}
   \newtheorem{NEWENVANME}[theorem]{NEWENVNAME_DISPLAYED}
   ```
-
+  where for example NEWENVNAME is definition or def (will be used in `\begin{def} ... \end{def}`), and NEWENVNAMEDISPLAYED is Definition (what will appear in the pdf)
   The `[theorem]` option allows sharing counter with the existing `Theorem` environment.
-  Doing so results in the following numbering: Definition 1, Theorem 2, Proposition 3, which makes it easier to find some results in the document (in contrast to: Theorem 1, Proposition 1, Proposition 2, Definition 1, Proposition 3)
+  Doing so results in the following numbering: Definition 1, Theorem 2, Proposition 3, which makes it easier to find some results in the document (in contrast with: Theorem 1, Proposition 1, Proposition 2, Definition 1, Proposition 3)
+
+  To number have theorem numbers prefixed with the section number (i.e. Theorem 2.1 in Section 2) use:
+  ```latex
+  \numberwithin{theorem}{section}
+  ```
 
 ## Mathematical operators
 
