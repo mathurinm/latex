@@ -9,6 +9,7 @@ It's OK if you disagree with them.
 1. [Code presentation](#code-presentation)
 1. [Basic document and project structure](#basic-document-and-project-structure)
 1. [Images](#images)
+1. [Link colors](#link-colors)
 1. [Bibliography](#bibliography)
 1. [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
 1. [Mathematical operators](#mathematical-operators)
@@ -84,11 +85,9 @@ A basic `.tex` template for the main document comprises the following macros:
 - When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise, the git history will quickly become too large.
 
 
-## Bibliography
-- I recommend using natbib
-- The following snippet makes bibliography links clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
+## Link colors
+Latex default flashy boxes around links can be improved with:
 ```latex
-\usepackage{natbib}
 \usepackage{xcolor}
 \definecolor{linkcolor}{RGB}{83,83,182} % you can customize
 \definecolor{citecolor}{RGB}{128,0,128} % you can customize
@@ -99,6 +98,16 @@ A basic `.tex` template for the main document comprises the following macros:
     linkcolor=linkcolor,
     urlcolor=linkcolor
 }
+```
+
+
+## Bibliography
+- I recommend using natbib
+- The following snippet makes bibliography links clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
+```latex
+\usepackage{natbib}
+\usepackage{hyperref}
+
 
 ...
 \bibliographystyle{unsrtnat}
