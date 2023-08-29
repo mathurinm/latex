@@ -102,27 +102,30 @@ Latex default flashy boxes around links can be improved with:
 
 
 ## Bibliography
+
 - I recommend using natbib
 - The following snippet makes bibliography links clickable (through `hyperref`), and displays them in a nicer color than the default one (flashy red/green boxes).
 ```latex
 \usepackage{natbib}
 \usepackage{hyperref}
 
-
 ...
+
 \bibliographystyle{unsrtnat}
 \bibliography{REFERENCES_FILE.bib}
 \end{document}
 ```
 
-- For the entries in the `.bib` file:
+- For the references in the `.bib`, make sure to
   - harmonize journal/conferences names abbreviations (avoid mixing "ICML" and "International Conference on Machine Learning")
-  - no need for URL, dates (only year is enough), editors, and publishers in conference papers (keep it simple, title, author and conference are enough for readers to identify the paper)
-  - the "Google Scholar" browser extension allows you to get the BibTex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the results popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
+  - refrain from having a URL, dates (only year is enough), editors, and publishers in conference papers; Keep it simple, The title, author and conference are enough for readers to identify the paper
   - avoid huge bibliographic files, they are a pain to maintain
-- citations should be presented differently depending on whether or not they are an integral part of the corpus  (i.e. the sentence wouldn't make sense without it):
-"The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`.": this produces "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019).".
-The reason is that everything which is between parenthesis should be removable without affecting the grammatical correctness of the sentence. If you write "as shown by (Z et al, 2020)", this is not respected.
+- The ["Google Scholar" browser extension](https://chrome.google.com/webstore/detail/google-scholar-button/ldipcbpaocekfooobnbcddclnhejkcpn) allows you to get the BibTex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the results popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
+- Citations should be presented differently depending on whether they are needed for the sentence to be grammatically correct; use
+  - `\citet{REF1}` if the reference is part of the sentence
+  - `\citep{REF2}` if the reference can be omitted without the sentence losing its meaning
+
+  Example "The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`." -- this produces --> "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019)."; Notice we can remove (Y et al, 2019) without affecting the grammatical correctness of the sentence.
 
 
 <!-- Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest. -->
@@ -196,7 +199,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 - Folder structure in a nutshell
 ```
   your_document_folder/
-  ├── sections/           <-- split document into sections
+  ├── sections/            <-- split document into sections
   |   └── section1.tex
   |   └── section2.tex
   |—— images/              <-- where to put figures/images
