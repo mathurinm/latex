@@ -1,6 +1,6 @@
 # Using $\LaTeX$
 
-Disclaimer: those are general guidelines, they are not absolute.
+Disclaimer: these are general guidelines, they are not absolute.
 It's OK if you disagree with them.
 
 # Contents
@@ -17,6 +17,7 @@ It's OK if you disagree with them.
 1. [Folder structure](#folder-structure)
 1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
 1. [Frequent errors](#frequent-errors)
+1. [Minor details](#minor-details)
 
 
 
@@ -25,7 +26,7 @@ It's OK if you disagree with them.
 - Build directly from vscode and keep the pdf open in dual pane. Build frequently to catch errors easily.
 - Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in the document
 - Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ [the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
-- Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (using your favorite editor, beautiful and fast pdf rendering, and version control that allows you to see who wrote what) overweigh the benefits of Overleaf.
+- Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (using your favorite editor, beautiful and fast PDF rendering, and version control that allows you to see who wrote what) outweigh the benefits of Overleaf.
 - Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, etc.
 
 
@@ -244,7 +245,9 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 ## Frequent errors
 - When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a math operator: `\DeclareMathOperator{\argmin}{arg\,min}`
 
-
+## Minor details
+- Use `` for opening quotes and '' for closing ones
+- Render beautiful dashes with a double dash: --
 
 # Advanced features and snippets
 
