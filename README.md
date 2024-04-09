@@ -26,9 +26,26 @@ It's OK if you disagree with them.
 - Build directly from vscode and keep the pdf open in dual pane. Build frequently to catch errors easily.
 - Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in the document
 - Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ [the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
-- Personal opinion: work locally with a git repository instead of using Overleaf. Use Overleaf only if you need to work on a short period of time with other people (e.g. a rebuttal). In other cases, the pros of working locally (using your favorite editor, beautiful and fast PDF rendering, and version control that allows you to see who wrote what) outweigh the benefits of Overleaf.
-- Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, etc.
+- Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, to create a new environment (equation, figure, align), etc
+- Configure your editor to remove trailing whitespaces, for lighter diffs in git.
 
+
+## Git
+### Git vs overleaf
+My personal opinion: I strongly prefer working locally with a git repository instead of using Overleaf. I use Overleaf only if I need to work on a short period of time with many other people (e.g. a rebuttal).
+The pros of working locally with git are:
+- your favorite editor with its shortcuts (fast line cutting, line moving, commenting chunks of code)
+- beautiful and fast PDF rendering,
+- version control that allows you to see and check who wrote what
+They completely outweigh the benefits of Overleaf IMO.
+
+People complain about conflicts with git, which do happen. I found out that if you do the following, you'll greatly reduce the number of conflicts and make them much easier to solve:
+- write ONE sentence per line only. This also lets you see when one of your sentences is too long
+- one file per section
+
+### Which files to ignore
+At first, I used to ignore all pdfs and pngs (`*.pdf`, `*.png`), but too many times it happened that I forgot to add an image, which made compilation impossible for my coauthors.
+Nowadays, I only ignore the pdfs which are the results of compilation, and do so explicitly (e.g. `main.pdf`)
 
 ## Code presentation
 - Math code can be hard to parse when you want to find an error or change something. Make it easier by indenting code for readability:
