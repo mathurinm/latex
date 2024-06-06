@@ -101,6 +101,7 @@ A basic `.tex` template for the main document comprises the following macros:
 ## Images
 - Put your images in a separate folder and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
 - When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise, the git history will quickly become too large.
+- Images are always better in pdf format because they are vectorized.
 
 
 ## Link colors
@@ -196,8 +197,8 @@ Latex default flashy boxes around links can be improved with:
 
 ## Mathematical operators
 
-Mathematical operators such as `sin` should not be italicized, otherwise it reads "s times i times n".
-To achieve this, instead of using `\mathrm` repeatedly, use:
+Mathematical operators such as `sin` should not be italicized, otherwise $sin$ reads "s times i times n" (compare to: $\sin$).
+To achieve this, instead of using `\mathrm` repeatedly, use `\DeclareMathOperator`:
 
 ```latex
 \DeclareMathOperator*{\argmax}{argmax}
@@ -265,6 +266,22 @@ To achieve this, instead of using `\mathrm` repeatedly, use:
 ## Minor details
 - Use `` for opening quotes and '' for closing ones
 - Render beautiful dashes with a double dash: --
+
+
+## Useful VSCode settings
+To help you when writing a tex file, you can add the following to your VSCode user setting (access them by opening a command paalette and typing "user settings json"):
+```json
+"latex-workshop.synctex.synctexjs.enabled": true,
+"latex-workshop.synctex.afterBuild.enabled": true,
+"latex-workshop.synctex.indicator.enabled": true
+```
+These settings will move your pdf rendering to the location corresponding to your cursor location in the .tex, right after compilation.
+
+The following setting will give you a more attractive rendering, as lines will be automatically line-fed (without modifying the file, but only the display).
+It will also make it more evident to you when some sentences are too long.
+```json
+"editor.wordWrap": "on"
+```
 
 # Advanced features and snippets
 
