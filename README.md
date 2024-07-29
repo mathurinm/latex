@@ -16,6 +16,7 @@ It's OK if you disagree with them.
 1. [Algorithms](#algorithms)
 1. [Folder structure](#folder-structure)
 1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
+1. [Writing style](#writing-style)
 1. [Frequent errors](#frequent-errors)
 1. [Minor details](#minor-details)
 
@@ -258,6 +259,14 @@ To achieve this, instead of using `\mathrm` repeatedly, use `\DeclareMathOperato
   ```
 
 - Declare shortcuts inside your main document, or inside an additional file `shortcuts.sty` + use `\usepackage{shortcuts}` in your preamble
+
+
+## Writing style
+
+- it is often useful to remind the reader what the objects are: instead of "where $f$ is differentiable", write "where the objective function $f$ is differentiable".
+- it is also useful to remind the space the variable live in, e.g. $\min_{x \in \mathbb{R}^d}$ instead of simply $\min_x$
+
+
 
 
 ## Frequent errors
