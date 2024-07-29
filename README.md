@@ -260,6 +260,28 @@ To achieve this, instead of using `\mathrm` repeatedly, use `\DeclareMathOperato
 - Declare shortcuts inside your main document, or inside an additional file `shortcuts.sty` + use `\usepackage{shortcuts}` in your preamble
 
 
+## Writing Style in LaTeX
+
+ - When writing mathematical expressions in LaTeX, it's essential to provide as much clarity as possible to the reader. One effective way to achieve this is by specifying the dimensions of the mathematical objects involved. This can greatly help the reader understand the context and the relationships between different elements. Here’s an example :
+
+```latex
+Consider the gradient descent update for a differentiable function $f$. The update rule is given by:
+\begin{align}
+w_{k+1} = w_k - \alpha_k \nabla f(w_k)
+\end{align}
+
+where:
+\begin{itemize}
+    \item \( w_k \in \mathbb{R}^p \) is the optimization variable at iteration $k$.
+    \item \( \alpha_k \in \mathbb{R} \) is the step size (or learning rate).
+    \item \( \nabla f(w_k) \in \mathbb{R}^p \) is the gradient of $f$ evaluated at $w_k$.
+\end{itemize}
+```
+
+By adding the dimensions, we provide clear information about the nature of each variable involved in the gradient descent update. This makes the expression easier to understand, especially for readers who may not be familiar with the specific notation.
+
+
+
 ## Frequent errors
 - When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a math operator: `\DeclareMathOperator{\argmin}{arg\,min}`
 
