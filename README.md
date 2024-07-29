@@ -16,6 +16,7 @@ It's OK if you disagree with them.
 1. [Algorithms](#algorithms)
 1. [Folder structure](#folder-structure)
 1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
+1. [Writing style](#writing-style)
 1. [Frequent errors](#frequent-errors)
 1. [Minor details](#minor-details)
 
@@ -260,25 +261,11 @@ To achieve this, instead of using `\mathrm` repeatedly, use `\DeclareMathOperato
 - Declare shortcuts inside your main document, or inside an additional file `shortcuts.sty` + use `\usepackage{shortcuts}` in your preamble
 
 
-## Writing Style in LaTeX
+## Writing style
 
- - When writing mathematical expressions in LaTeX, it's essential to provide as much clarity as possible to the reader. One effective way to achieve this is by specifying the dimensions of the mathematical objects involved. This can greatly help the reader understand the context and the relationships between different elements. Here’s an example :
+- it is often useful to remind the reader what the objects are: instead of "where $f$ is differentiable", write "where the objective function $f$ is differentiable".
+- it is also useful to remind the space the variable live in, e.g. $\min_{x \in \mathbb{R}^d}$ instead of simply $\min_x$
 
-```latex
-Consider the gradient descent update for a differentiable function $f$. The update rule is given by:
-\begin{align}
-w_{k+1} = w_k - \alpha_k \nabla f(w_k)
-\end{align}
-
-where:
-\begin{itemize}
-    \item \( w_k \in \mathbb{R}^p \) is the optimization variable at iteration $k$.
-    \item \( \alpha_k \in \mathbb{R} \) is the step size (or learning rate).
-    \item \( \nabla f(w_k) \in \mathbb{R}^p \) is the gradient of $f$ evaluated at $w_k$.
-\end{itemize}
-```
-
-By adding the dimensions, we provide clear information about the nature of each variable involved in the gradient descent update. This makes the expression easier to understand, especially for readers who may not be familiar with the specific notation.
 
 
 
