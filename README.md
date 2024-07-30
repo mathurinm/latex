@@ -271,6 +271,7 @@ To achieve this, instead of using `\mathrm` repeatedly, use `\DeclareMathOperato
 
 ## Frequent errors
 - When writing an operator, don't use `\mathrm{argmin}`. Instead, declare a math operator: `\DeclareMathOperator{\argmin}{arg\,min}`
+- Use ampersand (&) in LaTeX only within tabular or array environments for alignment. Avoid using it in the `cases` environment.
 
 ## Minor details
 - Use `` for opening quotes and '' for closing ones
