@@ -7,7 +7,7 @@ It's OK if you disagree with them.
 
 1. [Work environment](#work-environment)
 1. [Code presentation](#code-presentation)
-1. [Basic document and project structure](#basic-document-and-project-structure)
+1. [Basic document structure](#basic-document-structure)
 1. [Images](#images)
 1. [Link colors](#link-colors)
 1. [Bibliography](#bibliography)
@@ -16,10 +16,12 @@ It's OK if you disagree with them.
 1. [Algorithms](#algorithms)
 1. [Tables](#tables)
 1. [Folder structure](#folder-structure)
+1. [Writing comments in a draft](#writing-comments-in-a-draft)
 1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
 1. [Writing style](#writing-style)
 1. [Frequent errors](#frequent-errors)
 1. [Minor details](#minor-details)
+1. [Advanced features and snippets](advanced-features-and-snippets)
 
 
 
@@ -27,7 +29,7 @@ It's OK if you disagree with them.
 - Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
 - Build directly from vscode and keep the pdf open in dual pane. Build frequently to catch errors easily.
 - Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in the document
-- Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ [the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
+- Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ ~~[the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)~~ NB/ as of 09/2024 grammarly for vscode was discontinued
 - Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, to create a new environment (equation, figure, align), etc
 - Configure your editor to remove trailing whitespaces, for lighter diffs in git.
 
@@ -73,7 +75,7 @@ Nowadays, I only ignore the pdfs which are the results of compilation, and do so
 - Always use the same spacing to be able to use search and replace efficiently: for example, use `x_{k + 1}` don't write `x_{k+1}` and `x_{k +1}` in other parts of the document. Spaces around binary operators help readability IMO.
 - Make versioning easier by writing a single sentence per line. It also makes commenting out some parts of the code easier.
 
-## Basic document and project structure
+## Basic document structure
 A basic `.tex` template for the main document comprises the following macros:
 
 ```latex
@@ -101,9 +103,9 @@ A basic `.tex` template for the main document comprises the following macros:
 ```
 
 ## Images
-- Put your images in a separate folder and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
+- Put your images in a separate folder called `images` and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
 - When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise, the git history will quickly become too large.
-- Images are always better in pdf format because they are vectorized.
+- It's always better to generate images in pdf format because they are vectorized, hence of better quality, and easier to pimp with tools such as inkscape.
 
 
 ## Link colors
@@ -249,6 +251,18 @@ Read this: https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf
 ```
 <!-- one subfolder per conference  -->
 
+## Writing comments in a draft
+Use the todonotes package to write comments in the margin without altering the flow of the document. Define one color per coauthor for readability:
+```latex
+\usepackage[textsize=tiny]{todonotes}
+% you may want to set wider margins if possible, with the following line
+% \setlength{\marginparwidth}{0.9in}
+\newcommand{\mathurin}[1]{\todo[color=red!20]{{\footnotesize{\bf MM:} #1}}}
+\newcommand{\anne}[1]{\todo[color=olive!20]{{\footnotesize{\bf AG:} #1}}}
+% etc
+```
+
+
 ## On shortcuts and additional packages
 
 - Use custom shortcuts and additional packages parsimoniously: they make collaborating less easy. There's always a technical debt to having a 1000 lines shortcut file.
@@ -323,7 +337,6 @@ Use the following snippet:
 ```latex
 \newcommand{\pluseq}{\mathrel{{+}{=}}}
 ```
-
 
 ## Restating theorems in appendix
 TODO
