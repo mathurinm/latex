@@ -14,6 +14,7 @@ It's OK if you disagree with them.
 1. [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
 1. [Mathematical operators](#mathematical-operators)
 1. [Algorithms](#algorithms)
+1. [Tables](#tables)
 1. [Folder structure](#folder-structure)
 1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
 1. [Writing style](#writing-style)
@@ -220,6 +221,14 @@ To achieve this, instead of using `\mathrm` repeatedly, use `\DeclareMathOperato
 
 - Reset the line counter in each new algorithm with the command `\setcounter{AlgoLine}{0}`
 - Put your algorithms at the top of their page/column with `\begin{algorithm}[t]` (`t` for top)
+
+## Tables
+Use the `booktabs` package for pretty tables; avoid the default format for tables.
+Read this: https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf
+
+- Avoid vertical lines
+- Avoid “boxing up” cells, usually 3 horizontal lines are enough: above, below, and after heading (top and bottom one bolder than the other)
+- Enough space between rows
 
 ## Folder structure
 - To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section (usually placed together in a `section` folder), combined with `\input{yourfilename}` in your `main.tex`.
