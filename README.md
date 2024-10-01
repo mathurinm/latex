@@ -154,11 +154,14 @@ Latex default flashy boxes around links can be improved with:
   The title, author and conference are enough to identify the paper
   - avoid huge bibliographic files, they are a pain to maintain
 - The ["Google Scholar" browser extension](https://chrome.google.com/webstore/detail/google-scholar-button/ldipcbpaocekfooobnbcddclnhejkcpn) allows you to get the BibTex citation snippet for any paper in a few seconds: type the name of a paper in its search bar, in the results list click `Cite` for the paper you're interested in, then at the bottom of the results popup, click `bibtex` and you'll get the content to copy paste in your `.bib`
-- Citations should be presented differently depending on whether they are needed for the sentence to be grammatically correct; use
-  - `\citet{ref_key}` if the reference is part of the sentence
-  - `\citep{ref_key}` if the reference can be omitted without the sentence losing its meaning
+- **If you remove text in parentheses or brackets, a sentence should still be complete and correct**: you should not write "as proved by [1]".
 
-  Example "The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`." -- this produces --> "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019)."; Notice we can remove (Y et al, 2019) without affecting the grammatical correctness of the sentence.
+  Citations must be presented differently depending on whether they are needed for the sentence to be grammatically correct; use
+  - `\citet{ref_key}` if the reference is part of the sentence (citet for text)
+  - `\citep{ref_key}` if the reference can be omitted without the sentence losing its meaning (citep for cite parenthesis)
+  - avoid using `\cite`, whose behavior changes based
+
+  Example "The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`." -- this produces --> "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019)."; Notice we can remove (Y et al, 2019) without affecting the grammatical correctness of the sentence, but removing "X et al. (2016)" would leave us with a hanging "by"
 
 
 <!-- Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest. -->
