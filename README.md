@@ -6,6 +6,8 @@ It's OK if you disagree with them.
 # Contents
 
 1. [Work environment](#work-environment)
+1. [Folder structure](#folder-structure)
+1. [Latex and git](#git)
 1. [Code presentation](#code-presentation)
 1. [Basic document structure](#basic-document-structure)
 1. [Images](#images)
@@ -15,7 +17,7 @@ It's OK if you disagree with them.
 1. [Mathematical operators](#mathematical-operators)
 1. [Algorithms](#algorithms)
 1. [Tables](#tables)
-1. [Folder structure](#folder-structure)
+1. [Lists and enumitem](#lists-and-enumitem)
 1. [Writing comments in a draft](#writing-comments-in-a-draft)
 1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
 1. [Writing style](#writing-style)
@@ -29,10 +31,28 @@ It's OK if you disagree with them.
 - Use [VS Code](https://code.visualstudio.com/) + [James Yu's latex extension](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
 - Build directly from vscode and keep the pdf open in dual pane. Build frequently to catch errors easily.
 - Enable jumping to pdf and jumping to TeX with ctrl + click to navigate quickly in the document
-- Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ ~~[the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)~~ NB/ as of 09/2024 grammarly for vscode was discontinued
-- Check out shortcuts to copy, cut or delete a line (c, v, K), to switch a line with the one above, to create a new environment (equation, figure, align), etc
-- Configure your editor to remove trailing whitespaces, for lighter diffs in git.
+- Use a spell checker to catch typos, e.g. ~~[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)~~ ~~[the amazing Grammarly](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)~~ NB: *as of 09/2024 grammarly for vscode was discontinued*
+- Check out shortcuts to copy, cut or delete a line without selecting it (ctrl+c, ctrl+v, ctrl+shift+k), to switch a line with the one above, to create a new environment (equation, figure, align), etc
+- Configure your editor to remove trailing whitespaces, for lighter diffs in git. In vscode the option is `"files.trimTrailingWhitespace": true` in your JSON settings.
 
+## Folder structure
+- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section (usually placed together in a `section` folder), combined with `\input{yourfilename}` in your `main.tex`.
+  This keeps a light main document.
+
+  If you do so, write `%!TEX root = ../main.tex` at the top of each of your section files so that you can build with VS code directly from this file.
+- Folder structure in a nutshell
+```
+  your_document_folder/
+  ├── sections/            <-- split document into sections
+  |   └── section1.tex
+  |   └── section2.tex
+  |—— images/              <-- where to put figures/images
+  |   └── image1.png
+  |   └── figure.pdf
+  |——— main.tex            <-- document entry
+  |——— bibliography.bib    <-- where to put references
+```
+<!-- one subfolder per conference  -->
 
 ## Git
 ### Git vs overleaf
@@ -49,7 +69,7 @@ People complain about conflicts with git, which do happen. I found out that if y
 
 ### Which files to ignore
 At first, I used to ignore all pdfs and pngs (`*.pdf`, `*.png`), but too many times it happened that I forgot to add an image, which made compilation impossible for my coauthors.
-Nowadays, I only ignore the pdfs which are the results of compilation, and do so explicitly (e.g. `main.pdf`)
+Nowadays, I only ignore the pdfs which are the results of compilation, and do so explicitly (i.e. I ignore `main.pdf` but not `*.pdf`)
 
 ## Code presentation
 - Math code can be hard to parse when you want to find an error or change something. Make it easier by indenting code for readability:
@@ -103,7 +123,7 @@ A basic `.tex` template for the main document comprises the following macros:
 ```
 
 ## Images
-- Put your images in a separate folder called `images` and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
+- Put your images in a separate folder with an explicit name, e.g. `images` and use `\graphicspath{{./images}}` in the document, so you don't need to write the full path when using `\includegraphics{myimage}`
 - When working with git, no matter how tempting it may be, don't ignore all pdfs, pngs, etc. It'll often lead to forgetting to force add an image, which prevents your coauthors from compiling. But do ignore specific pdfs, in particular the result of the compilation of your tex; otherwise, the git history will quickly become too large.
 - It's always better to generate images in pdf format because they are vectorized, hence of better quality, and easier to pimp with tools such as inkscape.
 
@@ -235,24 +255,18 @@ Read this: https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf
 - Avoid “boxing up” cells, usually 3 horizontal lines are enough: above, below, and after heading (top and bottom one bolder than the other)
 - Enough space between rows
 
-## Folder structure
-- To minimize the number of conflicts and to navigate quickly between files, you can have one `.tex` file per section (usually placed together in a `section` folder), combined with `\input{yourfilename}` in your `main.tex`.
-  This keeps a light main document.
+# Lists and enumitem
+The `enumitem` package allows to globally configure options for itemize and enumerate environment:
+instead of repeatedly using `\begin{itemize}[topsep=1mm]` to add a 1  mm space between the bullet list and what precedes, you can configure it globally with:
 
-  If you do so, write `%!TEX root = ../main.tex` at the top of each of your section files so that you can build with VS code directly from this file.
-- Folder structure in a nutshell
 ```
-  your_document_folder/
-  ├── sections/            <-- split document into sections
-  |   └── section1.tex
-  |   └── section2.tex
-  |—— images/              <-- where to put figures/images
-  |   └── image1.png
-  |   └── figure.pdf
-  |——— main.tex            <-- document entry
-  |——— bibliography.bib    <-- where to put references
+\usepackage{enumitem}
+\setlist[enumerate]{topsep=1mm}
+\setlist[itemize]{topsep=1mm}
 ```
-<!-- one subfolder per conference  -->
+(several options can be passed, eg if in addition you want to have enumeration item be *(i)*, (*ii*), (*iii*), use `\setlist[enumerate]{topsep=1mm,label=Q(\roman*)}`)
+
+
 
 ## Writing comments in a draft
 Use the todonotes package to write comments in the margin without altering the flow of the document. Define one color per coauthor for readability:
