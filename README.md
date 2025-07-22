@@ -163,7 +163,7 @@ Latex default flashy boxes around links can be improved with:
 }
 \begin{document}
 ...
-\bibliographystyle{unsrtnat}
+\bibliographystyle{abbrvnat}
 \bibliography{REFERENCES_FILE.bib}
 \end{document}
 ```
@@ -183,6 +183,8 @@ Latex default flashy boxes around links can be improved with:
 
   Example "The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`." -- this produces --> "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019)."; Notice we can remove (Y et al, 2019) without affecting the grammatical correctness of the sentence, but removing "X et al. (2016)" would leave us with a hanging "by"
 
+  The `\bibliographystyle` command tells `natbib` how to style the citations and the References section that is created upon calling `\bibliography{REFERENCES_FILE.bib}` at the end of your document.
+   `\bibliographystyle{abbrvnat}` displays them by alphabetical order of the last name of first authors, with only the initial of the first name. `\bibliographystyle{unsrtnat}` displays the citations chronologically by order of apparition in the document along with the full names of the authors.
 
 <!-- Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest. -->
 
