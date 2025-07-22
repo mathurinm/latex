@@ -5,25 +5,33 @@ It's OK if you disagree with them.
 
 # Contents
 
-1. [Work environment](#work-environment)
-1. [Folder structure](#folder-structure)
-1. [Latex and git](#git)
-1. [Code presentation](#code-presentation)
-1. [Basic document structure](#basic-document-structure)
-1. [Images](#images)
-1. [Link colors](#link-colors)
-1. [Bibliography](#bibliography)
-1. [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
-1. [Mathematical operators](#mathematical-operators)
-1. [Algorithms](#algorithms)
-1. [Tables](#tables)
-1. [Lists and enumitem](#lists-and-enumitem)
-1. [Writing comments in a draft](#writing-comments-in-a-draft)
-1. [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
-1. [Writing style](#writing-style)
-1. [Frequent errors](#frequent-errors)
-1. [Minor details](#minor-details)
-1. [Advanced features and snippets](advanced-features-and-snippets)
+- [Using $\\LaTeX$](#using-latex)
+- [Contents](#contents)
+  - [Work environment](#work-environment)
+  - [Folder structure](#folder-structure)
+  - [Git](#git)
+    - [Git vs overleaf](#git-vs-overleaf)
+    - [Which files to ignore](#which-files-to-ignore)
+  - [Code presentation](#code-presentation)
+  - [Basic document structure](#basic-document-structure)
+  - [Images](#images)
+  - [Link colors](#link-colors)
+  - [Bibliography](#bibliography)
+  - [Citing equations, sections, algorithms](#citing-equations-sections-algorithms)
+  - [Mathematical operators](#mathematical-operators)
+  - [Algorithms](#algorithms)
+  - [Tables](#tables)
+- [Lists and enumitem](#lists-and-enumitem)
+  - [Writing comments in a draft](#writing-comments-in-a-draft)
+  - [On shortcuts and additional packages](#on-shortcuts-and-additional-packages)
+  - [Writing style](#writing-style)
+  - [Frequent errors](#frequent-errors)
+  - [Minor details](#minor-details)
+  - [Useful VSCode settings](#useful-vscode-settings)
+- [Advanced features and snippets](#advanced-features-and-snippets)
+  - [Defining a `Problem` equation-like environment](#defining-a-problem-equation-like-environment)
+  - [Creating a nicely typeset += operator](#creating-a-nicely-typeset--operator)
+  - [Restating theorems in appendix](#restating-theorems-in-appendix)
 
 
 
@@ -163,7 +171,7 @@ Latex default flashy boxes around links can be improved with:
 }
 \begin{document}
 ...
-\bibliographystyle{unsrtnat}
+\bibliographystyle{unsrtnat} % or \bibliographystyle{abbrvnat}
 \bibliography{REFERENCES_FILE.bib}
 \end{document}
 ```
@@ -183,6 +191,8 @@ Latex default flashy boxes around links can be improved with:
 
   Example "The work presented by `\citet{REF1}` introduces such a concept, which was later proven wrong `\citep{REF2}`." -- this produces --> "The work presented by X et al. (2016) introduces such a concept, which was later proven wrong (Y et al, 2019)."; Notice we can remove (Y et al, 2019) without affecting the grammatical correctness of the sentence, but removing "X et al. (2016)" would leave us with a hanging "by"
 
+  The `\bibliographystyle` command tells `natbib` how to style the citations and the References section that is created upon calling `\bibliography{REFERENCES_FILE.bib}` at the end of your document.
+  `\bibliographystyle{unsrtnat}` displays the citations chronologically by order of apparition in the document along with the full names of the authors, whereas `\bibliographystyle{abbrvnat}` displays them by alphabetical order of the last name of first authors, with only the initial of the first name.
 
 <!-- Create a `REFERENCES_FILE.bib` file to store the BibTex code of the paper of interest. -->
 
